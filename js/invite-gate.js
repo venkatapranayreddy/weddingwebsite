@@ -5,11 +5,11 @@
   var token = (params.get('invite') || '').toLowerCase();
   var map = window.INVITES || {};
   var entry = token && Object.prototype.hasOwnProperty.call(map, token) ? map[token] : null;
-  var invite = entry && entry.events ? entry.events : 'both';
-  if (invite !== 'ceremony' && invite !== 'reception') invite = 'both';
+  var invite = entry && entry.events ? entry.events : 'main';
+  if (invite !== 'ceremony' && invite !== 'reception' && invite !== 'both') invite = 'main';
 
   document.documentElement.setAttribute('data-invite', invite);
-  if (invite === 'both') return;
+  if (invite !== 'ceremony' && invite !== 'reception') return;
 
   var hide = invite === 'ceremony' ? 'reception' : 'ceremony';
 
